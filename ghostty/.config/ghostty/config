@@ -1,0 +1,10 @@
+theme = Solarized Dark - Patched
+window-decoration = false
+background-opacity = 0.7
+background = 000a0e
+window-padding-balance = true
+window-padding-x = 0
+window-padding-y = 0
+
+cursor-style = block
+copy-on-select = clipboard

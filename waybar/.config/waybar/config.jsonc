@@ -1,81 +1,179 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 30,
-    "spacing": 4,
-    "output": "DP-1",
-    "modules-left": ["wlr/workspaces"],
-    "modules-center": ["wlr/taskbar"],
-    "modules-right": ["tray", "pulseaudio", "cpu", "memory", "network#eth", "network#wg", "clock"],
-    "wlr/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "on-click": "activate",
-        "format": "<b>{name}</b>",
-        "persistent_workspaces": {
-            "1": ["HDMI-A-1"],
-            "2": ["DP-1"]
-        }
+  "bar_id": "bar-0",
+  "ipc": true,
+  "position": "top",
+  "margin-right": 10,
+  "margin-left": 10,
+  "margin-top": 10,
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "custom/date"
+  ],
+  "modules-right": [
+    "idle_inhibitor",
+    "pulseaudio",
+    "network",
+    "cpu",
+    "memory",
+    "tray"
+  ],
+  "hyprland/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": true,
+    "show-special": true,
+    "on-scroll-up": "hyprctl dispatch workspace e-1",
+    "on-scroll-down": "hyprctl dispatch workspace e+1",
+    "on-click": "activate",
+    "format": "{id}",
+    "format-icons": {
+      "urgent": "",
+      "default": "",
+      "magic": ""
     },
-    "wlr/taskbar": {
-        "format": "{icon}",
-        "icon-size": 14,
-        "icon-theme": "Adwaita",
-        "tooltip-format": "{title}",
-        "on-click": "activate",
-        "on-click-right": "close",
-        "all-outputs": true
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
     },
-    "tray": {
-        "spacing": 10
+    "sort-by-number": true
+  },
+  "hyprland/window": {
+    "icon": true
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": " ",
+      "deactivated": " "
     },
-    "pulseaudio": {
-        "scroll-step": 5,
-        "format": "<span color='#33ccff'><b>VOL</b></span> {volume}% {format_source}",
-        "format-muted": "<span color='#33ccff'><b>VOL</b></span> {volume}% 󰖁  {format_source}",
-        "format-source": "{volume}%",
-        "format-source-muted": "󰍭",
-        "on-click": "pavucontrol",
-        "on-click-right": "wpctl set-mute @DEFAULT_SINK@ toggle",
-        "on-click-middle": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
-        "on-scroll-up": "volume_up",
-        "on-scroll-down": "volume_down"
+    "start-activated": true,
+    "tooltip": false
+  },
+  "tray": {
+    // "icon-size": 21,
+    "spacing": 10
+  },
+  "cpu": {
+    "format": "{usage}%  ",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "{total:0.1f} / {used:0.1f}G  ",
+    "tooltip": false
+  },
+  "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon/",
+    "input-filename": "temp1_input",
+    "critical-threshold": 80,
+    // "format-critical": "{temperatureC}°C {icon}",
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": [
+      "<span color=\"#4f7a92\"></span>",
+      "",
+      "<span color=\"#ff5f5f\"></span>"
+    ]
+  },
+  "network": {
+    // "interface": "wlp2s0",
+    "format": "{ifname}",
+    "format-wifi": " ",
+    "format-ethernet": " ",
+    "format-disconnected": "",
+    "tooltip-format": "{ifname}",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-scroll-up": "bash .local/bin/netcon",
+    "on-scroll-down": "bash .local/bin/netdiscon",
+    "on-click-right": "foot nmtui"
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": " ",
+    "format-icons": {
+      "default": [
+        " ",
+        " ",
+        "  "
+      ]
     },
-    "cpu": {
-        "format": "<span color='#33ccff'><b>CPU</b></span> {usage}%",
-        "on-click": "footclient -w 1000x700 -T htop htop &"
+    "on-click": "pavucontrol -t 3",
+    "on-click-right": "pkill pavucontrol"
+  },
+  "custom/date": {
+    "format": "{}",
+    "interval": 60,
+    "exec": "date '+%d %b %Y %A %H:%M'",
+    "on-click": "foot -a=calendar sh -c calcurse",
+    "on-click-middle": "pkill calcurse",
+    "on-click-right": "dash .local/bin/cal.sh",
+    "tooltip": false
+  },
+  "custom/usbdrive": {
+    "format": "",
+    "on-click": "dash .local/bin/usbmount.sh",
+    "on-click-right": "dash .local/bin/usbunmount.sh",
+    "on-click-middle": "dash .local/bin/usbpoweroff.sh",
+    "tooltip": false
+  },
+  "custom/power": {
+    "format": "",
+    "on-click": "sh .local/bin/poweroffreboot",
+    "tooltip": false
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": true,
+    "format-icons": [
+      "",
+      ""
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}",
+    "on-scroll-down": "sway scratchpad show",
+    "on-scroll-up": "sway scratchpad show",
+    "on-click": "sway scratchpad show"
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{title} ({elapsedTime:%M:%S}/{totalTime:%M:%S})",
+    "format-disconnected": "Disconnected ",
+    "format-stopped": "",
+    "unknown-tag": "N/A",
+    "interval": 2,
+    "consume-icons": {
+      "on": " "
     },
-    "memory": {
-        "format": "<span color='#33ccff'><b>MEM</b></span> {}%",
-        "on-click": "footclient -w 1000x700 -T htop htop -s PERCENT_MEM &"
+    "random-icons": {
+      "on": " "
     },
-    "network#eth": {
-        "interval": 3,
-        "format-ethernet": "<span color='#33ccff'><b>NET</b></span> {bandwidthUpBytes} {bandwidthDownBytes} 󰈀",
-        "tooltip-format": "{ifname} via {ipaddr}/{cidr}",
-        "format-disconnected": "<span color='#33ccff'><b>NET</b></span> ⚠",
-        "on-click": "nm-connection-editor &",
-        "on-click-right": "footclient -w 1000x700 -H -T nmcli nmcli connection show &"
+    "repeat-icons": {
+      "on": " "
     },
-    "network#wg": {
-        "interface": "wg-midgard",
-        "interval": 3,
-        "format-ethernet": "<span color='#33ccff'><b>VPN</b></span> 󰖂",
-        "tooltip-format": "{ifname} via {ipaddr}/{cidr}",
-        "format-disconnected": "",
-        "on-click": "nm-connection-editor &",
-        "on-click-right": "footclient -w 1000x700 -H -T nmcli nmcli connection show &"
+    "single-icons": {
+      "on": "1 "
     },
-    "clock": {
-        "timezone": "Europe/Rome",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<big><tt>{calendar}</tt></big>",
-        "format": "<span color='#33ccff'><b>DATE</b></span> {:%H:%M}",
-        "format-alt": "<span color='#33ccff'><b>DATE</b></span> {:%d-%m-%Y}",
-        "on-click-right": "thunderbird &",
-        "calendar": {
-            "format": {
-                "today": "<span color='#33ccff'><b><u>{}</u></b></span>"
-            }
-        }
-    }
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "on-click": "mpc toggle",
+    "on-click-right": "mpc repeat",
+    "on-click-middle": "mpc stop",
+    "on-scroll-up": "mpc next",
+    "on-scroll-down": "mpc prev",
+    "tooltip-format": "MPD (connected), {artist} - {album} - {title} ⸨{songPosition}/{queueLength}⸩",
+    "tooltip-format-disconnected": "MPD (disconnected)"
+  }
 }

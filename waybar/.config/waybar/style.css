@@ -1,49 +1,182 @@
 * {
-  border: none;
-  border-radius: 0;
-  font-family: "Terminus";
-  font-size: 14px;
-  min-height: 0;
-}
-
-tooltip {
-  color: white;
-  background-color: black;
-  border: 2px solid rgba(89, 89, 89, 0.67);
+    border: none;
+    border-radius: 0px;
+    font-family: CaskaydiaCove Nerd Font;
+    font-size: 16px;
 }
 
 window#waybar {
-  background: black;
-  color: white;
-  border-bottom: 2px solid rgba(89, 89, 89, 0.67);
+    background-color: rgba(0, 20, 26, 0.8);
+    border-bottom: 0px solid rgba(191, 199, 202, 0.5);
+    color: #969696;
+    transition-property: background-color;
+    transition-duration: .5s;
+    border-radius: 9px;
 }
 
-#window {
-  font-weight: bold;
-  font-family: "Terminus";
+window#waybar.hidden {
+    opacity: 0;
 }
 
-#workspaces {
-  padding: 0 5px;
+window#waybar.empty #window {
+    background: none;
 }
 
 #workspaces button {
-  padding: 0 5px;
-  color: white;
+    background-color: transparent;
+    color: #969696;
+    box-shadow: inset 0px -0px transparent;
+    border-radius: 0px;
+    margin: 4px 5px;
 }
 
 #workspaces button.active {
-  color: rgba(51, 204, 255, 0.93);
+    background-color: rgba(42, 161, 152, 0.5);
+    color: #ffffff;
+    outline-style: none;
+    text-shadow: none;
+    border-radius: 5px;
+    margin: 4px 5px;
+}
+
+#workspaces button.focused {
+    padding: 4px;
+    background-color: #404040;
+    color: #fffff0;
+    box-shadow: inset 0px -0px #000000;
+    outline-style: none;
+    text-shadow: none;
+}
+
+#workspaces button.urgent {
+    padding: 4px;
+    background-color: rgba(183, 33, 31, 0.8);
+    color: #ffffff;
+    outline-style: none;
+    text-shadow: none;
+    border-radius: 9px;
+}
+
+#battery,
+#cpu,
+#memory,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#custom-media,
+#tray,
+#mode,
+#custom-date,
+#custom-usbdrive,
+#custom-maildir,
+#custom-power,
+#custom-emacsd,
+#custom-tabletmode,
+#scratchpad,
+#window,
+#mpd,
+#idle_inhibitor,
+#idle_inhibitor.activated,
+#taskbar button,
+#taskbar button.active {
+    padding: 0px 7px;
+    margin: 4px 5px;
+    color: #ffffff;
+    background-color: rgba(0, 20, 26, 0.2);
+    border-radius: 9px;
+}
+
+#mode {
+    background-color: #ff5f5f;
+    color: #ffffff;
+}
+
+#window {
+    border-radius: 0px;
+    background-color: rgba(0, 20, 26, 0.2);
+    font-family: Ubuntu;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 0px 7px;
+    margin: 4px 5px;
+    border-radius: 9px;
+}
+
+#battery.charging {
+    background-color: #707070;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #eee8d5;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #ff5f5f;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #969696;
+}
+
+#network.disconnected {
+    color: #ffffff;
+    background-color: #ff5f5f;
+}
+
+#pulseaudio {
+}
+
+#pulseaudio.muted {
+    color: #969696;
+}
+
+#temperature {
+}
+
+#temperature.critical {
+    color: #ffffff;
+    background-color: #ff5f5f;
+}
+
+#idle_inhibitor {
+    color: #969696;
+}
+
+#idle_inhibitor.activated {
+    box-shadow: inset 0px 0px #ecF0F1;
+}
+
+#mpd.stopped {
+    color: #969696;
+}
+
+#custom-maildir {
+    color: #969696;
+}
+
+
+#custom-maildir.newmail {
+    color: #4f7a92;
 }
 
 #taskbar button.active {
-  color: rgba(51, 204, 255, 0.93);
+    background-color: #404040;
 }
 
-#clock, #cpu, #memory, #network, #pulseaudio, #tray {
-  padding: 0 5px;
+#taskbar,
+#taskbar button,
+#taskbar button maximized,
+#custom-date {
+    background-color: rgba(0, 20, 26, 0.2);
 }
 
-#clock, #pulseaudio {
-  padding-right: 10px;
-}

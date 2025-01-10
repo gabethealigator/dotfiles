@@ -1,7 +1,7 @@
 theme = Solarized Dark - Patched
 window-decoration = false
-background-opacity = 0.7
-background = 000a0e
+background-opacity = 0.8
+background = 00141A
 window-padding-balance = true
 window-padding-x = 0
 window-padding-y = 0

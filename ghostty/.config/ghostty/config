@@ -1,10 +1,12 @@
-theme = Solarized Dark - Patched
+theme = iTerm2 Dark Background
 window-decoration = false
-background-opacity = 0.8
-background = 00141A
+background-opacity = 0.7
 window-padding-balance = true
 window-padding-x = 0
 window-padding-y = 0
+mouse-hide-while-typing = true
+
+adw-toolbar-style = flat
 
 cursor-style = block
 copy-on-select = clipboard

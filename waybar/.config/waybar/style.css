@@ -6,12 +6,11 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 20, 26, 0.8);
+    background-color: rgba(0, 20, 26, 0);
     border-bottom: 0px solid rgba(191, 199, 202, 0.5);
     color: #969696;
     transition-property: background-color;
     transition-duration: .5s;
-    border-radius: 9px;
 }
 
 window#waybar.hidden {
@@ -24,23 +23,22 @@ window#waybar.empty #window {
 
 #workspaces button {
     background-color: transparent;
-    color: #969696;
+    color: #d9d9d9;
     box-shadow: inset 0px -0px transparent;
     border-radius: 0px;
-    margin: 4px 5px;
+    margin: 0px 5px;
 }
 
 #workspaces button.active {
-    background-color: rgba(42, 161, 152, 0.5);
+    background-color: rgba(42, 161, 152, 0);
     color: #ffffff;
     outline-style: none;
     text-shadow: none;
-    border-radius: 5px;
-    margin: 4px 5px;
+    margin: 0px 5px;
 }
 
 #workspaces button.focused {
-    margin: 4px 5px;
+    margin: 0px 5px;
     background-color: #404040;
     color: #fffff0;
     box-shadow: inset 0px -0px #000000;
@@ -49,8 +47,8 @@ window#waybar.empty #window {
 }
 
 #workspaces button.urgent {
-    margin: 4px 5px;
-    background-color: rgba(183, 33, 31, 0.8);
+    margin: 0px 5px;
+    background-color: rgba(183, 33, 31, 0);
     color: #ffffff;
     outline-style: none;
     text-shadow: none;
@@ -80,10 +78,10 @@ window#waybar.empty #window {
 #idle_inhibitor.activated,
 #taskbar button,
 #taskbar button.active {
-    padding: 0px 7px;
-    margin: 4px 5px;
+    padding: 0px 5px;
+    margin: 0px 5px;
     color: #ffffff;
-    background-color: rgba(0, 20, 26, 0.2);
+    background-color: rgba(0, 20, 26, 0);
     border-radius: 9px;
 }
 
@@ -94,13 +92,12 @@ window#waybar.empty #window {
 
 #window {
     border-radius: 0px;
-    background-color: rgba(0, 20, 26, 0.2);
+    background-color: rgba(0, 20, 26, 0);
     font-family: Ubuntu;
     font-size: 16px;
     font-weight: normal;
-    padding: 0px 7px;
-    margin: 4px 5px;
-    border-radius: 9px;
+    padding: 0px 0px;
+    margin: 0px 5px;
 }
 
 #battery.charging {
@@ -177,6 +174,6 @@ label:focus {
 #taskbar button,
 #taskbar button maximized,
 #custom-date {
-    background-color: rgba(0, 20, 26, 0.2);
+    background-color: rgba(0, 20, 26, 0);
 }
 

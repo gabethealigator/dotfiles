@@ -2,9 +2,9 @@
   "bar_id": "bar-0",
   "ipc": true,
   "position": "top",
-  "margin-right": 10,
-  "margin-left": 10,
-  "margin-top": 10,
+  "margin-right": 0,
+  "margin-left": 0,
+  "margin-top": 0,
   "modules-left": [
     "hyprland/workspaces",
     "hyprland/window"
@@ -27,11 +27,10 @@
     "on-scroll-up": "hyprctl dispatch workspace e-1",
     "on-scroll-down": "hyprctl dispatch workspace e+1",
     "on-click": "activate",
-    "format": "{id}",
+    "format": "{icon}",
     "format-icons": {
       "urgent": "",
-      "default": "",
-      "magic": ""
+      "magic": " "
     },
     "persistent-workspaces": {
       "1": [],
